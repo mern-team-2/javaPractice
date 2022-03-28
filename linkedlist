@@ -1,0 +1,101 @@
+class Node {
+  int data;
+  Node next;
+}
+
+class LinkedLi {
+  Node head;
+  
+  public void insert(int value){
+    Node node = new Node();
+    node.data = value;
+    node.next = null;
+    
+    if(head == null){
+      head = node;
+      
+    }else{
+      Node tempNode = head;
+      
+      while(tempNode.next != null){
+        tempNode = tempNode.next;
+	  }
+      tempNode.next = node; 
+	}
+  }
+  
+  public void printList(){
+    System.out.println("printList..");
+  
+    Node tempNode = head;
+      
+    while(tempNode.next != null){
+      System.out.println(tempNode.data);
+      tempNode = tempNode.next;
+    }
+     System.out.println(tempNode.data);
+  }
+  
+  public void insertAtStart(int value){
+    Node node = new Node();
+    node.data = value;
+    node.next = null;
+    node.next = head;
+    head = node;
+  }
+  
+  public void insertAtPosition(int position, int value){
+	Node node = new Node();
+    node.data = value;
+    node.next = null;
+    int count = 0;
+    
+    Node TempNode = head;
+    
+    if(position == 0){
+    	insert(value);
+    }else{
+      /*while(TempNode.next != null){
+        if((count+1) == position){
+          Node nextNode = TempNode.next;
+          TempNode.next = node;
+          node.next = nextNode;
+          break;
+        }else{
+          count++;
+          TempNode = TempNode.next;
+        }
+      }*/
+  
+		for(int i=0;i<position-1;i++)
+		{
+			TempNode = TempNode.next;
+		}
+		node.next = TempNode.next;
+		TempNode.next = node;
+    }
+      
+  	}
+  
+}
+
+-----------------------------------
+
+// main class
+
+class runner {
+  public static void main(String[] args) {
+    
+    System.out.println("Hello Codiva");
+    LinkedLi list = new LinkedLi();
+ 
+    list.insert(18);
+    list.insert(45);
+    list.insert(12);
+
+    list.insertAtStart(22);
+     list.insertAtPosition(2,11);
+    list.printList();
+    
+  }                                   
+}
